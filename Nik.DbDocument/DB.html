@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>数据库</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <table id="tbContainer" class="table table-bordered table-hover">
+            <caption>数据库</caption>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>描述</th>
+                    <th>创建时间</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="Scripts/common.js"></script>
+    <script src="Scripts/lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $.ajax({
+            url: config.api + 'db',
+            type: 'get',
+            datatype: 'json',
+            success: function (arg) {
+                console.table(arg);
+
+                var $tbody = $('#tbContainer tbody');
+                $(arg.RetValue).each(function () {
+                    var tr = '<tr>' + '<td>' + this.Name + '</td>' + '<td>' + this.Caption + '</td>' + '<td>' + this.CreateDate + '</td>' + '</tr>';
+                    $tbody.append($(tr));
+                });
+            }
+        });
+
+    </script>
+</body>
+</html>
