@@ -10,12 +10,12 @@ namespace Nik.DbDocument.Business.Model
         /// <summary>
         /// 数据库名称
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
         /// <summary>
         /// 数据库描述
         /// </summary>
-        public string Caption { get; set; }
+        public string Caption { get; set; } = "";
 
         /// <summary>
         /// 创建时间

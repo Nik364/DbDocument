@@ -16,7 +16,22 @@ namespace Nik.DbDocument.Business.Data
         /// <returns></returns>
         public IList<Model.DataBase> GetList()
         {
-            string sql = @"SELECT name, crdate createDate FROM Master..SysDatabases ORDER BY crdate DESC;";
+            string sql = @"
+                CREATE TABLE #tmpDbCaption(
+	                Value NVARCHAR(128),
+	                Name NVARCHAR(128)
+                )
+
+                DECLARE @sql NVARCHAR(2048);
+                SELECT @sql = LEFT(Tmp, LEN(Tmp) - 10)  FROM (
+	                SELECT (
+		                SELECT 'SELECT CAST(Value AS NVARCHAR(128)), ''' + name + ''' Name FROM ' + name + '.sys.extended_properties WHERE class = 0 UNION ALL ' FROM master..sysdatabases FOR XML PATH('')
+	                ) Tmp
+                ) DbCaption;
+                INSERT INTO #tmpDbCaption EXEC (@sql);
+
+                SELECT db.name, db.crdate createDate, caption.Value caption FROM master..sysdatabases db LEFT JOIN #tmpDbCaption caption ON caption.Name = db.name ORDER BY createDate DESC;
+                ";
             DataTable dt = SqlHelper.ExecuteDataset(sql).Tables[0];
             return dt.ToModel<Model.DataBase>();
         }
