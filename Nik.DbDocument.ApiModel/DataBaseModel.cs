@@ -9,12 +9,12 @@ namespace Nik.DbDocument.ApiModel
     public class DataBaseModel
     {
         /// <summary>
-        /// 数据库名称
+        /// 名称
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 数据库描述
+        /// 描述
         /// </summary>
         public string Caption { get; set; }
 

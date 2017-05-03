@@ -1,21 +1,22 @@
 ﻿using System;
 
-namespace Nik.DbDocument.Business.Model
+namespace Nik.DbDocument.ApiModel
 {
     /// <summary>
-    /// 数据库对象
+    /// 数据库表对象
     /// </summary>
-    public class DataBase
+    [Serializable]
+    public class TableModel
     {
         /// <summary>
         /// 名称
         /// </summary>
-        public string Name { get; set; } = "";
+        public string Name { get; set; }
 
         /// <summary>
         /// 描述
         /// </summary>
-        public string Caption { get; set; } = "";
+        public string Caption { get; set; }
 
         /// <summary>
         /// 创建时间

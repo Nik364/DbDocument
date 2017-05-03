@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base.cs" />
     <Compile Include="DataBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Table.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nik.DbDocument.Business.Model\Nik.DbDocument.Business.Model.csproj">

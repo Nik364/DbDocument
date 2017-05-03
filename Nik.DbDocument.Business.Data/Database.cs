@@ -8,7 +8,7 @@ namespace Nik.DbDocument.Business.Data
     /// <summary>
     /// 数据库访问对象
     /// </summary>
-    public class DataBase
+    public class DataBase : Base
     {
         /// <summary>
         /// 获取数据库列表
@@ -32,7 +32,7 @@ namespace Nik.DbDocument.Business.Data
 
                 SELECT db.name, db.crdate createDate, caption.Value caption FROM master..sysdatabases db LEFT JOIN #tmpDbCaption caption ON caption.Name = db.name ORDER BY createDate DESC;
                 ";
-            DataTable dt = SqlHelper.ExecuteDataset(sql).Tables[0];
+            DataTable dt = this.ExecSql(sql).Tables[0];
             return dt.ToModel<Model.DataBase>();
         }
     }

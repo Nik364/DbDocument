@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>数据库</title>
+    <meta charset="utf-8" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
@@ -31,12 +32,11 @@
 
                 var $tbody = $('#tbContainer tbody');
                 $(arg.RetValue).each(function () {
-                    var tr = '<tr>' + '<td>' + this.Name + '</td>' + '<td>' + this.Caption + '</td>' + '<td>' + this.CreateDate + '</td>' + '</tr>';
+                    var tr = '<tr>' + '<td><a href="table.html?dbname=' + this.Name + '">' + this.Name + '</a></td>' + '<td>' + this.Caption + '</td>' + '<td>' + this.CreateDate + '</td>' + '</tr>';
                     $tbody.append($(tr));
                 });
             }
         });
-
     </script>
 </body>
 </html>
