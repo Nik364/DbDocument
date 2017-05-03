@@ -21,10 +21,12 @@ namespace Nik.DbDocument.Business.Data
         /// <returns></returns>
         public IList<Model.Table> GetList(string dbName)
         {
-            string sql = string.Format(@"
+            this.DbName = dbName;
+
+            const string sql = @"
                 SELECT obj.name, obj.crdate createDate, prop.value caption 
-                FROM {0}.sys.sysobjects obj LEFT JOIN {0}.sys.extended_properties prop ON obj.id = prop.major_id 
-                WHERE prop.minor_id = 0", dbName);
+                FROM sys.sysobjects obj LEFT JOIN sys.extended_properties prop ON obj.id = prop.major_id 
+                WHERE prop.minor_id = 0";
 
             DataTable dt = this.ExecSql(sql).Tables[0];
             return dt.ToModel<Model.Table>();
@@ -38,7 +40,9 @@ namespace Nik.DbDocument.Business.Data
         /// <returns></returns>
         public IList<Model.Field> GetFieldList(string dbName, string tableName)
         {
-            string sql = string.Format(@"
+            this.DbName = dbName;
+
+            const string sql = @"
                 SELECT a.name, ISNULL(g.[value], '') caption, e.[text] [default],  
                     	CASE WHEN b.name IN ( 'varchar', 'nvarchar' )
                           THEN b.name + '('
@@ -51,13 +55,13 @@ namespace Nik.DbDocument.Business.Data
                                + CAST(COLUMNPROPERTY(a.id, a.name, 'Scale') AS VARCHAR(4))
                                + ')'
                           ELSE b.name END [type]
-                FROM {0}.sys.syscolumns a   
-                    LEFT JOIN {0}.sys.systypes b ON a.xusertype = b.xusertype    
-                    INNER JOIN {0}.sys.sysobjects d ON a.id = d.id AND d.xtype = 'U' AND d.name <> 'dtproperties'  
-                    LEFT JOIN {0}.sys.syscomments e ON a.cdefault = e.id   
-                    LEFT JOIN {0}.sys.extended_properties g ON a.id = g.major_id AND a.colid = g.minor_id   
+                FROM sys.syscolumns a   
+                    LEFT JOIN sys.systypes b ON a.xusertype = b.xusertype    
+                    INNER JOIN sys.sysobjects d ON a.id = d.id AND d.xtype = 'U' AND d.name <> 'dtproperties'  
+                    LEFT JOIN sys.syscomments e ON a.cdefault = e.id   
+                    LEFT JOIN sys.extended_properties g ON a.id = g.major_id AND a.colid = g.minor_id   
                 WHERE d.name = @tableName
-                ORDER BY a.id , a.colorder", dbName);
+                ORDER BY a.id , a.colorder";
 
             SqlParameter[] parms =
             {

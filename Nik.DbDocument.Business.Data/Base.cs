@@ -2,15 +2,32 @@
 using Nik.Framework.Data;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Nik.DbDocument.Business.Data
 {
     public class Base
     {
         /// <summary>
+        /// 数据库名称
+        /// </summary>
+        public string DbName { get; set; }
+
+        /// <summary>
         /// DB连接字符串
         /// </summary>
-        public string DbConnectionString => ConfigHelper.GetConfigString("connStr");
+        public string DbConnectionString
+        {
+            get
+            {
+                string connStr = ConfigHelper.GetConfigString("connStr");
+                if (!string.IsNullOrEmpty(DbName))
+                {
+                    connStr = Regex.Replace(connStr, @"(?<=Initial Catalog=)\w+(?=;)", DbName);
+                }
+                return connStr;
+            }
+        }
 
         /// <summary>
         /// 执行查询语句
