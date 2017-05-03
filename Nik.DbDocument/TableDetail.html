@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>数据库表</title>
+    <title>数据库表详情</title>
     <meta charset="utf-8" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
 </head>
@@ -14,7 +14,8 @@
                 <tr>
                     <th>名称</th>
                     <th>描述</th>
-                    <th>创建时间</th>
+                    <th>类型</th>
+                    <th>默认值</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -24,18 +25,23 @@
     <script src="Scripts/lib/jquery-1.9.1.min.js"></script>
     <script type="text/javascript">
         var dbname = null;
+        var tablename = null;
         $(function () {
             dbname = getQueryString('dbname');
-            $('#tbContainer caption').html(dbname);
-            if (!dbname) {
+            tablename = getQueryString('tablename');
+
+            $('#tbContainer caption').html(tablename);
+
+            if (!dbname || !tablename) {
                 return;
             }
 
             $.ajax({
-                url: config.api + 'table',
+                url: config.api + 'table\\detail',
                 type: 'get',
                 data: {
-                    dbname: dbname
+                    dbname: dbname,
+                    tablename: tablename
                 },
                 datatype: 'json',
                 success: function (arg) {
@@ -43,7 +49,7 @@
 
                     var $tbody = $('#tbContainer tbody');
                     $(arg.RetValue).each(function () {
-                        var tr = '<tr>' + '<td><a href="tabledetail.html?dbname=' + dbname + '&tablename=' + this.Name + '">' + this.Name + '</a></td>' + '<td>' + this.Caption + '</td>' + '<td>' + this.CreateDate + '</td>' + '</tr>';
+                        var tr = '<tr>' + '<td>' + this.Name + '</td>' + '<td>' + this.Caption + '</td>' + '<td>' + this.Type + '</td>' + '<td>' + this.Default + '</td>' + '</tr>';
                         $tbody.append($(tr));
                     });
                 }

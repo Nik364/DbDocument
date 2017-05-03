@@ -27,5 +27,21 @@ namespace Nik.DbDocument.Api.Controllers
                 RetValue = bll.GetList(dbName)
             };
         }
+
+        /// <summary>
+        /// 获取数据库表字段列表
+        /// </summary>
+        /// <param name="dbName">数据库名</param>
+        /// <param name="tableName">数据库表名称</param>
+        /// <returns></returns>
+        public AjaxResult GetDetail(string dbName, string tableName)
+        {
+            return new AjaxResult
+            {
+                PromptMsg = "查询成功",
+                Result = DoResult.Success,
+                RetValue = bll.GetFieldList(dbName, tableName)
+            };
+        }
     }
 }

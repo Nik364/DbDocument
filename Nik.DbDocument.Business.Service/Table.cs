@@ -28,5 +28,25 @@ namespace Nik.DbDocument.Business.Service
                            };
             return dbModels.ToList();
         }
+
+        /// <summary>
+        /// 获取数据库列表
+        /// </summary>
+        /// <param name="dbName">数据库名称</param>
+        /// <param name="tableName">数据库表名称</param>
+        /// <returns></returns>
+        public IList<FieldModel> GetFieldList(string dbName, string tableName)
+        {
+            var dbs = dal.GetFieldList(dbName, tableName);
+            var dbModels = from item in dbs
+                           select new FieldModel()
+                           {
+                               Name = item.Name,
+                               Caption = item.Caption,
+                               Default = item.Default,
+                               Type = item.Type
+                           };
+            return dbModels.ToList();
+        }
     }
 }
