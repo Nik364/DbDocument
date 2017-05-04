@@ -23,7 +23,14 @@ namespace Nik.DbDocument.Business.Data
                 string connStr = ConfigHelper.GetConfigString("connStr");
                 if (!string.IsNullOrEmpty(DbName))
                 {
-                    connStr = Regex.Replace(connStr, @"(?<=Initial Catalog=)\w+(?=;)", DbName);
+                    if (connStr.ToLower().Contains("database"))
+                    {
+                        connStr = Regex.Replace(connStr, @"(?<=database=)\w+(?=;)", DbName, RegexOptions.IgnoreCase);
+                    }
+                    else
+                    {
+                        connStr = Regex.Replace(connStr, @"(?<=Initial Catalog=)\w+(?=;)", DbName, RegexOptions.IgnoreCase);
+                    }
                 }
                 return connStr;
             }
