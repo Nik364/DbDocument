@@ -22,7 +22,7 @@ namespace Nik.DbDocument.Business.Data
 	                Name NVARCHAR(128)
                 )
 
-                DECLARE @sql NVARCHAR(2048);
+                DECLARE @sql NVARCHAR(MAX);
                 SELECT @sql = LEFT(Tmp, LEN(Tmp) - 10)  FROM (
 	                SELECT (
 		                SELECT 'SELECT CAST(Value AS NVARCHAR(128)), ''' + name + ''' Name FROM ' + name + '.sys.extended_properties WHERE class = 0 UNION ALL ' FROM master..sysdatabases FOR XML PATH('')
