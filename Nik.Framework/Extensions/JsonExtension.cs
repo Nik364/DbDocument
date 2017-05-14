@@ -16,7 +16,7 @@ namespace Nik.Framework.Extensions
         /// <returns></returns>
         public static string SerializeObject<T>(this T obj)
         {
-            var timeFormat = new IsoDateTimeConverter {DateTimeFormat = "yyyy-MM-dd HH:mm:ss"};
+            var timeFormat = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
             return JsonConvert.SerializeObject(obj, Formatting.Indented, timeFormat);
         }
 

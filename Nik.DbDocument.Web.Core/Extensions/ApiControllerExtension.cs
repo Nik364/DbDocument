@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Nik.Framework.Extensions;
+using System;
 using System.Text;
 using System.Web.Http;
 using System.Web.Mvc;
-using Nik.Framework.Extensions;
 
 namespace Nik.DbDocument.Web.Core.Extensions
 {

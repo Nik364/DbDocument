@@ -16,13 +16,16 @@
                     <th>描述</th>
                     <th>类型</th>
                     <th>默认值</th>
+                    <th>操作</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </div>
     <script src="Scripts/common.js"></script>
-    <script src="Scripts/lib/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/lib/jquery-1.11.3.min.js"></script>
+    <script src="Scripts/lib/bootstrap.min.js"></script>
+    <script src="Scripts/lib/bootbox.min.js"></script>
     <script type="text/javascript">
         var dbname = null;
         var tablename = null;
@@ -49,12 +52,19 @@
 
                     var $tbody = $('#tbContainer tbody');
                     $(arg.RetValue).each(function () {
-                        var tr = '<tr>' + '<td>' + this.Name + '</td>' + '<td>' + this.Caption + '</td>' + '<td>' + this.Type + '</td>' + '<td>' + this.Default + '</td>' + '</tr>';
+                        var tr = '<tr>' + '<td>' + this.Name + '</td>' + '<td>' + this.Caption + '</td>' + '<td>' + this.Type + '</td>' + '<td>' + this.Default + '</td>' + '<td><a href="javascript:update()">修改</a></td>' + '</tr>';
                         $tbody.append($(tr));
                     });
                 }
             });
         });
+
+        function update() {
+            bootbox.prompt("修改",
+                function (result) {
+                    console.log(result);
+                });
+        }
     </script>
 </body>
 </html>

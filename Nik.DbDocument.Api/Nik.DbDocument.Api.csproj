@@ -142,13 +142,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nik.DbDocument.ApiModel\Nik.DbDocument.ApiModel.csproj">
-      <Project>{7a111e47-90e1-4afb-8f28-64232ef60c5f}</Project>
-      <Name>Nik.DbDocument.ApiModel</Name>
+    <ProjectReference Include="..\Nik.DbDoc.Core.ApiModel\Nik.DbDoc.Core.ApiModel.csproj">
+      <Project>{955533af-046e-4bfa-b6f7-fa877de64947}</Project>
+      <Name>Nik.DbDoc.Core.ApiModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nik.DbDocument.Business.Service\Nik.DbDocument.Business.Service.csproj">
-      <Project>{ec814b64-eeb4-4aa3-8f19-bdbe8ee4818e}</Project>
-      <Name>Nik.DbDocument.Business.Service</Name>
+    <ProjectReference Include="..\Nik.DbDoc.Core.Service\Nik.DbDoc.Core.Service.csproj">
+      <Project>{bf3d2374-f2ae-4639-bdd0-96838de9ac46}</Project>
+      <Name>Nik.DbDoc.Core.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nik.DbDocument.Web.Core\Nik.DbDocument.Web.Core.csproj">
       <Project>{27c6d04f-a7c9-4362-a6f0-9806ab0cbddd}</Project>

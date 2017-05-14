@@ -15,13 +15,14 @@
                     <th>名称</th>
                     <th>描述</th>
                     <th>创建时间</th>
+                    <th>操作</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </div>
     <script src="Scripts/common.js"></script>
-    <script src="Scripts/lib/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/lib/jquery-1.11.3.min.js"></script>
     <script src="Scripts/lib/bootstrap.min.js"></script>
     <script src="Scripts/lib/bootbox.min.js"></script>
     <script type="text/javascript">
@@ -30,22 +31,27 @@
             type: 'get',
             datatype: 'json',
             success: function (arg) {
-                console.table(arg);
-
                 var $tbody = $('#tbContainer tbody');
                 $(arg.RetValue).each(function () {
-                    var tr = '<tr>' + '<td><a href="table.html?dbname=' + this.Name + '">' + this.Name + '</a></td>' + '<td>' + this.Caption + '</td>' + '<td>' + this.CreateDate + '</td>' + '</tr>';
-                    $tbody.append($(tr));
+                    var tr = '<tr>' + '<td><a href="table.html?dbname=' + this.Name + '">' + this.Name + '</a></td>' + '<td>' + this.Caption + '</td>' + '<td>' + this.CreateDate + '</td>' + '<td><a href="javascript:update()">修改</a></td>' + '</tr>';
+                    $tbody.append(tr);
+                    //$tbody.append(
+                    //        $(`<tr>
+                    //            <td><a href="table.html?dbname=${this.Name}>${this.Name}</a></td>
+                    //            <td>${this.Caption}</td>
+                    //            <td>${this.CreateDate}</td>
+                    //            <td><a href="javascript:update()">修改</a></td>
+                    //        </tr>`));
                 });
             }
         });
 
-        
-
-        //bootbox.prompt("修改",
-        //    function(result) {
-        //        console.log(result);
-        //    });
+        function update() {
+            bootbox.prompt("修改",
+                function (result) {
+                    console.log(result);
+                });
+        }
     </script>
 </body>
 </html>

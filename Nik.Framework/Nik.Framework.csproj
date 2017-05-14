@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\ConfigHelper.cs" />
-    <Compile Include="Data\SqlHelper.cs" />
     <Compile Include="Extensions\DataRowExtension.cs" />
     <Compile Include="Extensions\DataTableExtension.cs" />
     <Compile Include="Extensions\HString.cs" />

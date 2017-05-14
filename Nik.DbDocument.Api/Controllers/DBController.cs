@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text.RegularExpressions;
-using System.Web.Http;
-using System.Web.Http.Results;
-using System.Web.Mvc;
-using Nik.DbDocument.ApiModel;
-using Nik.DbDocument.Web.Core.Extensions;
-using Nik.DbDocument.Business.Service;
+﻿using Nik.DbDoc.Core.Service;
 using Nik.DbDocument.Web.Core.Models;
+using System.Web.Http;
 
 namespace Nik.DbDocument.Api.Controllers
 {

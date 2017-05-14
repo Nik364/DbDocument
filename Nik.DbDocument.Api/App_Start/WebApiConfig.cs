@@ -1,9 +1,6 @@
-﻿using System.Net.Http.Formatting;
-using System.Net.Http.Headers;
+﻿using Newtonsoft.Json.Serialization;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
 
 namespace Nik.DbDocument.Api
 {

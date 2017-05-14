@@ -9,7 +9,7 @@ namespace Nik.Framework.Extensions
     {
         /// <summary>
         /// 格式化可空日期类型
-        /// </summary> 
+        /// </summary>
         /// <param name="time">日期</param>
         /// <param name="format">格式化日期</param>
         /// <returns></returns>

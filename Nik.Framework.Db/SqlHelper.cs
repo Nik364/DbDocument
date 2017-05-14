@@ -1,11 +1,11 @@
-﻿using System;
-using System.Data.SqlClient;
-using System.Data;
-using System.Xml;
+﻿using Nik.Framework.Config;
+using System;
 using System.Collections;
-using Nik.Framework.Config;
+using System.Data;
+using System.Data.SqlClient;
+using System.Xml;
 
-namespace Nik.Framework.Data
+namespace Nik.Framework.Db
 {
     /// <summary>
     /// 将常用的数据操作以高性能、可扩展方式进行封装，适用于 Microsoft SQLServer 2000 及以上版本。
@@ -13,6 +13,7 @@ namespace Nik.Framework.Data
     public static class SqlHelper
     {
         #region 简化方法
+
         /// <summary>
         /// 使用默认连接串  用ConnectionString节里面的 LocalMySqlServer
         /// </summary>
@@ -22,6 +23,7 @@ namespace Nik.Framework.Data
         {
             return ConfigHelper.GetConfigString("connStr");
         }
+
         /// <summary>
         /// 使用默认连接串 执行sql返回一个执行结果
         /// </summary>
@@ -31,6 +33,7 @@ namespace Nik.Framework.Data
         {
             return ExecuteScalar(defaultConnectionString, CommandType.Text, commandText);
         }
+
         /// <summary>
         /// 使用默认连接串 执行sql返回一个MySqlDataReader
         /// </summary>
@@ -40,6 +43,7 @@ namespace Nik.Framework.Data
         {
             return ExecuteReader(defaultConnectionString, CommandType.Text, commandText);
         }
+
         /// <summary>
         /// 使用默认连接串 执行sql返回影响到的行
         /// </summary>
@@ -49,6 +53,7 @@ namespace Nik.Framework.Data
         {
             return ExecuteNonQuery(defaultConnectionString, CommandType.Text, commandText);
         }
+
         /// <summary>
         /// 使用默认连接串 执行sql返回一个DataSet
         /// </summary>
@@ -58,8 +63,8 @@ namespace Nik.Framework.Data
         {
             return ExecuteDataset(defaultConnectionString, CommandType.Text, commandText);
         }
-        #endregion
 
+        #endregion 简化方法
 
         #region 私有静态工具方法
 
@@ -220,7 +225,7 @@ namespace Nik.Framework.Data
             }
         }
 
-        #endregion
+        #endregion 私有静态工具方法
 
         #region ExecuteNonQuery
 
@@ -228,7 +233,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回受影响的行数。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders");
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -246,7 +251,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回受影响的行数。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -276,8 +281,8 @@ namespace Nik.Framework.Data
         /// </summary>
         /// <remarks>
         /// 此方法不支持对输出参数或者存储过程里的返回参数的访问
-        /// 
-        /// 示例:  
+        ///
+        /// 示例:
         ///  int result = ExecuteNonQuery(connString, "PublishOrders", 24, 36);
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -317,7 +322,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回受影响的行数。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int result = ExecuteNonQuery(conn, CommandType.StoredProcedure, "PublishOrders");
         /// </remarks>
         /// <param name="connection">有效的数据库连接串</param>
@@ -335,7 +340,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回受影响的行数。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int result = ExecuteNonQuery(conn, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -368,7 +373,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回受影响的行数。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int result = ExecuteNonQuery(conn, "PublishOrders", 24, 36);
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -407,7 +412,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回受影响的行数。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int result = ExecuteNonQuery(trans, CommandType.StoredProcedure, "PublishOrders");
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -424,7 +429,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回受影响的行数。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int result = ExecuteNonQuery(trans, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -457,7 +462,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回受影响的行数。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int result = ExecuteNonQuery(conn, trans, "PublishOrders", 24, 36);
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -503,7 +508,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回 DataSet 数据集。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  DataSet ds = ExecuteDataset(connString, CommandType.StoredProcedure, "GetOrders");
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -520,7 +525,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回 DataSet 数据集。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  DataSet ds = ExecuteDataset(connString, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -549,7 +554,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回 DataSet 数据集。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  DataSet ds = ExecuteDataset(connString, "GetOrders", 24, 36);
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -589,7 +594,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回 DataSet 数据集。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  DataSet ds = ExecuteDataset(conn, CommandType.StoredProcedure, "GetOrders");
         /// </remarks>
         /// <param name="connection">有效的数据连接对象</param>
@@ -607,7 +612,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回 DataSet 数据集。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  DataSet ds = ExecuteDataset(conn, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connection">有效的数据连接对象</param>
@@ -646,7 +651,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回 DataSet 数据集。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  DataSet ds = ExecuteDataset(conn, "GetOrders", 24, 36);
         /// </remarks>
         /// <param name="connection">有效的数据连接对象</param>
@@ -685,7 +690,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回 DataSet 数据集。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  DataSet ds = ExecuteDataset(trans, CommandType.StoredProcedure, "GetOrders");
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -703,7 +708,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回 DataSet 数据集。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  DataSet ds = ExecuteDataset(trans, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -741,7 +746,7 @@ namespace Nik.Framework.Data
         /// 对连接执行 Transact-SQL 语句并返回 DataSet 数据集。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  DataSet ds = ExecuteDataset(trans, "GetOrders", 24, 36);
         /// </remarks>
         /// <param name="transaction">有效的事务</param>
@@ -789,6 +794,7 @@ namespace Nik.Framework.Data
         {
             /// <summary>数据库连接属于数据访问帮助类，并由该类管理。</summary>
             Internal,
+
             /// <summary>数据库连接属于调用方，并由调用方管理。</summary>
             External
         }
@@ -861,7 +867,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个数据读取对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  SqlDataReader dr = ExecuteReader(connString, CommandType.StoredProcedure, "GetOrders");
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -879,7 +885,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个数据读取对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  SqlDataReader dr = ExecuteReader(connString, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -910,14 +916,13 @@ namespace Nik.Framework.Data
                 }
                 throw;
             }
-
         }
 
         /// <summary>
         /// 将 CommandText 发送到 Connection 并生成一个数据读取对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  SqlDataReader dr = ExecuteReader(connString, "GetOrders", 24, 36);
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -954,7 +959,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个数据读取对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  SqlDataReader dr = ExecuteReader(conn, CommandType.StoredProcedure, "GetOrders");
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -972,7 +977,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个数据读取对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  SqlDataReader dr = ExecuteReader(conn, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -991,7 +996,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个数据读取对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  SqlDataReader dr = ExecuteReader(conn, "GetOrders", 24, 36);
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1027,7 +1032,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个数据读取对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  SqlDataReader dr = ExecuteReader(trans, CommandType.StoredProcedure, "GetOrders");
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -1045,7 +1050,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个数据读取对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///   SqlDataReader dr = ExecuteReader(trans, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -1073,7 +1078,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个数据读取对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  SqlDataReader dr = ExecuteReader(trans, "GetOrders", 24, 36);
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -1118,7 +1123,7 @@ namespace Nik.Framework.Data
         /// 执行查询，并返回查询所返回的结果集中第一行的第一列。忽略额外的列或行。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int orderCount = (int)ExecuteScalar(connString, CommandType.StoredProcedure, "GetOrderCount");
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -1136,7 +1141,7 @@ namespace Nik.Framework.Data
         /// 执行查询，并返回查询所返回的结果集中第一行的第一列。忽略额外的列或行。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int orderCount = (int)ExecuteScalar(connString, CommandType.StoredProcedure, "GetOrderCount", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -1165,7 +1170,7 @@ namespace Nik.Framework.Data
         /// 执行查询，并返回查询所返回的结果集中第一行的第一列。忽略额外的列或行。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int orderCount = (int)ExecuteScalar(connString, "GetOrderCount", 24, 36);
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -1202,7 +1207,7 @@ namespace Nik.Framework.Data
         /// 执行查询，并返回查询所返回的结果集中第一行的第一列。忽略额外的列或行。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int orderCount = (int)ExecuteScalar(conn, CommandType.StoredProcedure, "GetOrderCount");
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1220,7 +1225,7 @@ namespace Nik.Framework.Data
         /// 执行查询，并返回查询所返回的结果集中第一行的第一列。忽略额外的列或行。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int orderCount = (int)ExecuteScalar(conn, CommandType.StoredProcedure, "GetOrderCount", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1256,7 +1261,7 @@ namespace Nik.Framework.Data
         /// 执行查询，并返回查询所返回的结果集中第一行的第一列。忽略额外的列或行。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int orderCount = (int)ExecuteScalar(conn, "GetOrderCount", 24, 36);
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1293,7 +1298,7 @@ namespace Nik.Framework.Data
         /// 执行查询，并返回查询所返回的结果集中第一行的第一列。忽略额外的列或行。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int orderCount = (int)ExecuteScalar(trans, CommandType.StoredProcedure, "GetOrderCount");
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -1310,7 +1315,7 @@ namespace Nik.Framework.Data
         /// 执行查询，并返回查询所返回的结果集中第一行的第一列。忽略额外的列或行。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int orderCount = (int)ExecuteScalar(trans, CommandType.StoredProcedure, "GetOrderCount", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -1343,7 +1348,7 @@ namespace Nik.Framework.Data
         /// 执行查询，并返回查询所返回的结果集中第一行的第一列。忽略额外的列或行。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  int orderCount = (int)ExecuteScalar(trans, "GetOrderCount", 24, 36);
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -1389,7 +1394,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个 XmlReader 对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  XmlReader reader = ExecuteXmlReader(conn, CommandType.StoredProcedure, "GetOrders");
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1407,7 +1412,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个 XmlReader 对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  XmlReader reader = ExecuteXmlReader(conn, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1448,7 +1453,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个 XmlReader 对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  XmlReader reader = ExecuteXmlReader(conn, "GetOrders", 24, 36);
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1486,7 +1491,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个 XmlReader 对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  XmlReader reader = ExecuteXmlReader(trans, CommandType.StoredProcedure, "GetOrders");
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -1504,7 +1509,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个 XmlReader 对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  XmlReader reader = ExecuteXmlReader(trans, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -1537,7 +1542,7 @@ namespace Nik.Framework.Data
         /// 将 CommandText 发送到 Connection 并生成一个 XmlReader 对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  XmlReader reader = ExecuteXmlReader(trans, "GetOrders", 24, 36);
         /// </remarks>
         /// <param name="transaction">有效的事务对象</param>
@@ -1583,7 +1588,7 @@ namespace Nik.Framework.Data
         /// 在 DataSet 中添加或刷新行以匹配使用 DataSet 名称的数据源中的行，并创建一个名为 TableNames 数组表名。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  FillDataset(connString, CommandType.StoredProcedure, "GetOrders", ds, new string[] {"orders"});
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -1614,7 +1619,7 @@ namespace Nik.Framework.Data
         /// 在 DataSet 中添加或刷新行以匹配使用 DataSet 名称的数据源中的行，并创建一个名为 TableNames 数组表名。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  FillDataset(connString, CommandType.StoredProcedure, "GetOrders", ds, new string[] {"orders"}, new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
@@ -1646,13 +1651,13 @@ namespace Nik.Framework.Data
         /// 在 DataSet 中添加或刷新行以匹配使用 DataSet 名称的数据源中的行，并创建一个名为 TableNames 数组表名。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  FillDataset(connString, CommandType.StoredProcedure, "GetOrders", ds, new string[] {"orders"}, 24);
         /// </remarks>
         /// <param name="connectionString">有效的数据库连接串</param>
         /// <param name="spName">存储过程名称</param>
         /// <param name="dataSet">执行命令后返回包含结果集的数据集</param>
-        /// <param name="tableNames">创建的表映射，该映射允许这些表通过用户自定义名（也可以为真实表名）被引用</param>    
+        /// <param name="tableNames">创建的表映射，该映射允许这些表通过用户自定义名（也可以为真实表名）被引用</param>
         /// <param name="parameterValues">参数对象数组，赋值为存储过程输入参数</param>
         public static void FillDataset(string connectionString, string spName, DataSet dataSet, string[] tableNames, params object[] parameterValues)
         {
@@ -1677,14 +1682,14 @@ namespace Nik.Framework.Data
         /// 在 DataSet 中添加或刷新行以匹配使用 DataSet 名称的数据源中的行，并创建一个名为 TableNames 数组表名。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  FillDataset(conn, CommandType.StoredProcedure, "GetOrders", ds, new string[] {"orders"});
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
         /// <param name="commandType">获取或设置一个值，该值指示如何解释 CommandText 属性</param>
         /// <param name="commandText">获取或设置要对数据源执行的Transact-SQL 语句或存储过程</param>
         /// <param name="dataSet">执行命令后返回包含结果集的数据集</param>
-        /// <param name="tableNames">创建的表映射，该映射允许这些表通过用户自定义名（也可以为真实表名）被引用</param>    
+        /// <param name="tableNames">创建的表映射，该映射允许这些表通过用户自定义名（也可以为真实表名）被引用</param>
         public static void FillDataset(SqlConnection connection, CommandType commandType, string commandText, DataSet dataSet, string[] tableNames)
         {
             FillDataset(connection, commandType, commandText, dataSet, tableNames, null);
@@ -1694,7 +1699,7 @@ namespace Nik.Framework.Data
         /// 在 DataSet 中添加或刷新行以匹配使用 DataSet 名称的数据源中的行，并创建一个名为 TableNames 数组表名。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  FillDataset(conn, CommandType.StoredProcedure, "GetOrders", ds, new string[] {"orders"}, new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1712,7 +1717,7 @@ namespace Nik.Framework.Data
         /// 在 DataSet 中添加或刷新行以匹配使用 DataSet 名称的数据源中的行，并创建一个名为 TableNames 数组表名。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  FillDataset(conn, "GetOrders", ds, new string[] {"orders"}, 24, 36);
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1751,7 +1756,7 @@ namespace Nik.Framework.Data
         /// 在 DataSet 中添加或刷新行以匹配使用 DataSet 名称的数据源中的行，并创建一个名为 TableNames 数组表名。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  FillDataset(trans, CommandType.StoredProcedure, "GetOrders", ds, new string[] {"orders"});
         /// </remarks>
         /// <param name="transaction">有效的数据事务对象</param>
@@ -1768,7 +1773,7 @@ namespace Nik.Framework.Data
         /// 在 DataSet 中添加或刷新行以匹配使用 DataSet 名称的数据源中的行，并创建一个名为 TableNames 数组表名。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  FillDataset(trans, CommandType.StoredProcedure, "GetOrders", ds, new string[] {"orders"}, new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="transaction">有效的数据事务对象</param>
@@ -1786,7 +1791,7 @@ namespace Nik.Framework.Data
         /// 在 DataSet 中添加或刷新行以匹配使用 DataSet 名称的数据源中的行，并创建一个名为 TableNames 数组表名。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  FillDataset(trans, "GetOrders", ds, new string[]{"orders"}, 24, 36);
         /// </remarks>
         /// <param name="transaction">有效的数据事务对象</param>
@@ -1829,7 +1834,7 @@ namespace Nik.Framework.Data
         /// 在 DataSet 中添加或刷新行以匹配使用 DataSet 名称的数据源中的行，并创建一个名为 TableNames 数组表名。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  FillDataset(conn, trans, CommandType.StoredProcedure, "GetOrders", ds, new string[] {"orders"}, new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1881,7 +1886,7 @@ namespace Nik.Framework.Data
             }
         }
 
-        #endregion
+        #endregion FillDataset
 
         #region UpdateDataset
 
@@ -1889,7 +1894,7 @@ namespace Nik.Framework.Data
         /// 从名为“Table”的 DataTable 为指定的 DataSet 中每个已插入、已更新或已删除的行调用相应的 INSERT、UPDATE 或 DELETE 语句。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  UpdateDataset(conn, insertCommand, deleteCommand, updateCommand, dataSet, "Order");
         /// </remarks>
         /// <param name="insertCommand">把新记录插入到数据源中的有效的 Transact-SQL 语句或存储过程</param>
@@ -1928,7 +1933,7 @@ namespace Nik.Framework.Data
             }
         }
 
-        #endregion
+        #endregion UpdateDataset
 
         #region CreateCommand
 
@@ -1936,7 +1941,7 @@ namespace Nik.Framework.Data
         /// 创建并返回一个与该连接相关联的 Command 对象。
         /// </summary>
         /// <remarks>
-        /// 示例:  
+        /// 示例:
         ///  SqlCommand command = CreateCommand(conn, "AddCustomer", "CustomerID", "CustomerName");
         /// </remarks>
         /// <param name="connection">有效的数据库连接对象</param>
@@ -1972,7 +1977,7 @@ namespace Nik.Framework.Data
             return cmd;
         }
 
-        #endregion
+        #endregion CreateCommand
 
         #region ExecuteNonQueryTypedParams
 
@@ -2079,7 +2084,7 @@ namespace Nik.Framework.Data
             }
         }
 
-        #endregion
+        #endregion ExecuteNonQueryTypedParams
 
         #region ExecuteDatasetTypedParams
 
@@ -2186,7 +2191,7 @@ namespace Nik.Framework.Data
             }
         }
 
-        #endregion
+        #endregion ExecuteDatasetTypedParams
 
         #region ExecuteReaderTypedParams
 
@@ -2222,7 +2227,6 @@ namespace Nik.Framework.Data
                 return result;
             }
         }
-
 
         /// <summary>
         /// 通过 DataRow 值作为存储过程输入参数值对连接创建并准备数据执行命令对象。
@@ -2294,7 +2298,7 @@ namespace Nik.Framework.Data
             }
         }
 
-        #endregion
+        #endregion ExecuteReaderTypedParams
 
         #region ExecuteScalarTypedParams
 
@@ -2401,7 +2405,7 @@ namespace Nik.Framework.Data
             }
         }
 
-        #endregion
+        #endregion ExecuteScalarTypedParams
 
         #region ExecuteXmlReaderTypedParams
 
@@ -2475,8 +2479,7 @@ namespace Nik.Framework.Data
             }
         }
 
-        #endregion
-
+        #endregion ExecuteXmlReaderTypedParams
     }
 
     /// <summary>
@@ -2549,7 +2552,7 @@ namespace Nik.Framework.Data
             return clonedParameters;
         }
 
-        #endregion
+        #endregion 私有方法、变量与构造函数
 
         #region 缓存函数
 
@@ -2605,7 +2608,7 @@ namespace Nik.Framework.Data
             }
         }
 
-        #endregion
+        #endregion 缓存函数
 
         #region 参数发现函数
 
@@ -2713,7 +2716,6 @@ namespace Nik.Framework.Data
             return CloneParameters(cachedParameters);
         }
 
-        #endregion
-
+        #endregion 参数发现函数
     }
 }
