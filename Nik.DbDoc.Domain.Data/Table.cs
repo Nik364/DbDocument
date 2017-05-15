@@ -21,8 +21,9 @@ namespace Nik.DbDoc.Domain.Data
 
             const string sql = @"
                 SELECT obj.name, obj.crdate createDate, prop.value caption
-                FROM sys.sysobjects obj LEFT JOIN sys.extended_properties prop ON obj.id = prop.major_id
-                WHERE prop.minor_id = 0";
+                FROM sys.sysobjects obj LEFT JOIN sys.extended_properties prop ON obj.id = prop.major_id AND prop.minor_id = 0 
+                WHERE obj.[type] = 'U'
+                ORDER BY obj.name;";
 
             DataTable dt = this.ExecSql(sql).Tables[0];
             return dt.ToModel<Model.Table>();
@@ -40,7 +41,7 @@ namespace Nik.DbDoc.Domain.Data
 
             const string sql = @"
                 SELECT a.name, ISNULL(g.[value], '') caption, e.[text] [default],
-                    	CASE WHEN b.name IN ( 'varchar', 'nvarchar' )
+                    	CASE WHEN b.name IN ( 'varchar', 'nvarchar', 'char', 'nchar' )
                           THEN b.name + '('
                                + CAST(COLUMNPROPERTY(a.id, a.name, 'PRECISION') AS VARCHAR(4))
                                + ')'
