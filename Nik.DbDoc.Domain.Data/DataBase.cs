@@ -15,22 +15,23 @@ namespace Nik.DbDoc.Domain.Data
         /// <returns></returns>
         public IList<Model.DataBase> GetList()
         {
-            string sql = @"
-                CREATE TABLE #tmpDbCaption(
-	                Value NVARCHAR(128),
-	                Name NVARCHAR(128)
-                )
+            //string sql = @"
+            //    CREATE TABLE #tmpDbCaption(
+            //     Value NVARCHAR(128),
+            //     Name NVARCHAR(128)
+            //    )
 
-                DECLARE @sql NVARCHAR(MAX);
-                SELECT @sql = LEFT(Tmp, LEN(Tmp) - 10)  FROM (
-	                SELECT (
-		                SELECT 'SELECT CAST(Value AS NVARCHAR(128)), ''' + name + ''' Name FROM ' + name + '.sys.extended_properties WHERE class = 0 UNION ALL ' FROM master..sysdatabases FOR XML PATH('')
-	                ) Tmp
-                ) DbCaption;
-                INSERT INTO #tmpDbCaption EXEC (@sql);
+            //    DECLARE @sql NVARCHAR(MAX);
+            //    SELECT @sql = LEFT(Tmp, LEN(Tmp) - 10)  FROM (
+            //     SELECT (
+            //      SELECT 'SELECT CAST(Value AS NVARCHAR(128)), ''' + name + ''' Name FROM ' + name + '.sys.extended_properties WHERE class = 0 UNION ALL ' FROM master..sysdatabases FOR XML PATH('')
+            //     ) Tmp
+            //    ) DbCaption;
+            //    INSERT INTO #tmpDbCaption EXEC (@sql);
 
-                SELECT db.name, db.crdate createDate, caption.Value caption FROM master..sysdatabases db LEFT JOIN #tmpDbCaption caption ON caption.Name = db.name ORDER BY createDate DESC;
-                ";
+            //    SELECT db.name, db.crdate createDate, caption.Value caption FROM master..sysdatabases db LEFT JOIN #tmpDbCaption caption ON caption.Name = db.name ORDER BY createDate DESC;
+            //    ";
+            const string sql = "SELECT name, crdate createDate FROM master..sysdatabases";
             DataTable dt = this.ExecSql(sql).Tables[0];
             return dt.ToModel<Model.DataBase>();
         }

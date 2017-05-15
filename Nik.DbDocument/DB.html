@@ -13,9 +13,7 @@
             <thead>
                 <tr>
                     <th>名称</th>
-                    <th>描述</th>
                     <th>创建时间</th>
-                    <th>操作</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -36,21 +34,12 @@
                     $tbody.append(
                         `<tr>
                             <td><a href="table.html?dbname=${this.Name}">${this.Name}</a></td>
-                            <td>${this.Caption}</td>
                             <td>${this.CreateDate}</td>
-                            <td><a href="javascript:update()">修改</a></td>
                         </tr>`
                     );
                 });
             }
         });
-
-        function update() {
-            bootbox.prompt("修改",
-                function (result) {
-                    console.log(result);
-                });
-        }
     </script>
 </body>
 </html>
