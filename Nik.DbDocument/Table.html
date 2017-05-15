@@ -46,8 +46,14 @@
 
                     var $tbody = $('#tbContainer tbody');
                     $(arg.RetValue).each(function () {
-                        var tr = '<tr>' + '<td><a href="tabledetail.html?dbname=' + dbname + '&tablename=' + this.Name + '">' + this.Name + '</a></td>' + '<td>' + this.Caption + '</td>' + '<td>' + this.CreateDate + '</td>' + '<td><a href="javascript:update()">修改</a></td>' + '</tr>';
-                        $tbody.append($(tr));
+                        $tbody.append(
+                            `<tr>
+                                <td><a href="tabledetail.html?dbname=${dbname}&tablename=${this.Name}">${this.Name}</a></td>
+                                <td>${this.Caption}</td>
+                                <td>${this.CreateDate}</td>
+                                <td><a href="javascript:update()">修改</a></td>
+                            </tr>`
+                        );
                     });
                 }
             });
