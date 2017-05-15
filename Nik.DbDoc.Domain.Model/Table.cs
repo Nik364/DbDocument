@@ -1,5 +1,5 @@
-﻿using System;
-using Nik.Framework.Copy;
+﻿using Nik.Framework.Copy;
+using System;
 
 namespace Nik.DbDoc.Domain.Model
 {

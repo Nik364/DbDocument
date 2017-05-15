@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.Reflection;
 
 namespace Nik.Framework.Copy.Extensions
@@ -26,7 +20,7 @@ namespace Nik.Framework.Copy.Extensions
             {
                 return default(T);
             }
-            T result = new T();
+            var result = new T();
 
             var sourceProps = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             var targetProps = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);

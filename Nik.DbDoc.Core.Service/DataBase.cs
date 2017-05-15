@@ -1,7 +1,7 @@
 ﻿using Nik.DbDoc.Core.ApiModel;
+using Nik.Framework.Copy.Extensions;
 using System.Collections.Generic;
 using System.Linq;
-using Nik.Framework.Copy.Extensions;
 
 namespace Nik.DbDoc.Core.Service
 {
