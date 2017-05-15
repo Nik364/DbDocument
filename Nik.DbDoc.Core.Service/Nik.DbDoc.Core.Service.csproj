@@ -57,6 +57,10 @@
       <Project>{f9941fad-51c1-4156-a785-1680de454f93}</Project>
       <Name>Nik.DbDoc.Domain.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nik.Framework\Nik.Framework.csproj">
+      <Project>{f546f540-813e-49e0-a5af-7599647b3447}</Project>
+      <Name>Nik.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

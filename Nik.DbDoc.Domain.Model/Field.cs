@@ -1,9 +1,11 @@
-﻿namespace Nik.DbDoc.Domain.Model
+﻿using Nik.Framework.Copy;
+
+namespace Nik.DbDoc.Domain.Model
 {
     /// <summary>
     /// 数据库表字段实体
     /// </summary>
-    public class Field
+    public class Field : ICopy
     {
         /// <summary>
         /// 名称

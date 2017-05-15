@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Nik.Framework.Copy;
+using System;
 
 namespace Nik.DbDoc.Domain.Model
 {
     /// <summary>
     /// 数据库对象
     /// </summary>
-    public class DataBase
+    public class DataBase: ICopy
     {
         /// <summary>
         /// 名称

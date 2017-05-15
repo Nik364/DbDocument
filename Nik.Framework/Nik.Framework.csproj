@@ -45,15 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\ConfigHelper.cs" />
+    <Compile Include="Copy\Extensions\CopyExtension.cs" />
+    <Compile Include="Copy\ICopy.cs" />
     <Compile Include="Extensions\DataRowExtension.cs" />
     <Compile Include="Extensions\DataTableExtension.cs" />
-    <Compile Include="Extensions\HString.cs" />
     <Compile Include="Extensions\JsonExtension.cs" />
     <Compile Include="Extensions\NullableDateTimeExtension.cs" />
     <Compile Include="Extensions\OtherExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Copy\Attributes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

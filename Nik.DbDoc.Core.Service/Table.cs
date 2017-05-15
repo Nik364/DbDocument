@@ -1,4 +1,5 @@
 ﻿using Nik.DbDoc.Core.ApiModel;
+using Nik.Framework.Copy.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,13 +17,7 @@ namespace Nik.DbDoc.Core.Service
         public IList<TableModel> GetList(string dbName)
         {
             var dbs = dal.GetList(dbName);
-            var dbModels = from item in dbs
-                           select new TableModel()
-                           {
-                               Name = item.Name,
-                               Caption = item.Caption,
-                               CreateDate = item.CreateDate
-                           };
+            var dbModels = from item in dbs select item.CopyTo<TableModel>();
             return dbModels.ToList();
         }
 
@@ -35,14 +30,7 @@ namespace Nik.DbDoc.Core.Service
         public IList<FieldModel> GetFieldList(string dbName, string tableName)
         {
             var dbs = dal.GetFieldList(dbName, tableName);
-            var dbModels = from item in dbs
-                           select new FieldModel()
-                           {
-                               Name = item.Name,
-                               Caption = item.Caption,
-                               Default = item.Default,
-                               Type = item.Type
-                           };
+            var dbModels = from item in dbs select item.CopyTo<FieldModel>();
             return dbModels.ToList();
         }
     }

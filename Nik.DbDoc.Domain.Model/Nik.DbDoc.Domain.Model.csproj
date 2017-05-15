@@ -45,6 +45,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Table.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nik.DbDocument\Nik.DbDocument.csproj">
+      <Project>{a2ca9bc9-c016-4c4f-8f0d-56560bb877e7}</Project>
+      <Name>Nik.DbDocument</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nik.Framework\Nik.Framework.csproj">
+      <Project>{F546F540-813E-49E0-A5AF-7599647B3447}</Project>
+      <Name>Nik.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,7 @@
 ﻿using Nik.DbDoc.Core.ApiModel;
 using System.Collections.Generic;
 using System.Linq;
+using Nik.Framework.Copy.Extensions;
 
 namespace Nik.DbDoc.Core.Service
 {
@@ -15,13 +16,7 @@ namespace Nik.DbDoc.Core.Service
         public IList<DataBaseModel> GetList()
         {
             var dbs = dal.GetList();
-            var dbModels = from item in dbs
-                           select new DataBaseModel()
-                           {
-                               Name = item.Name,
-                               Caption = item.Caption,
-                               CreateDate = item.CreateDate
-                           };
+            var dbModels = from item in dbs select item.CopyTo<DataBaseModel>();
             return dbModels.ToList();
         }
     }
