@@ -1,9 +1,11 @@
-﻿namespace Nik.DbDoc.Domain.Model
+﻿using Nik.Framework.Copy;
+
+namespace Nik.DbDoc.Core.ApiModel
 {
     /// <summary>
     /// 数据库扩展属性实体
     /// </summary>
-    public class ExtendProp
+    public class ExtendPropModel : ICopy
     {
         /// <summary>
         /// 扩展属性名

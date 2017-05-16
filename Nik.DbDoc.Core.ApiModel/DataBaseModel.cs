@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nik.Framework.Copy;
+using System;
 
 namespace Nik.DbDoc.Core.ApiModel
 {
@@ -6,7 +7,7 @@ namespace Nik.DbDoc.Core.ApiModel
     /// 数据库对象
     /// </summary>
     [Serializable]
-    public class DataBaseModel
+    public class DataBaseModel : ICopy
     {
         /// <summary>
         /// 名称

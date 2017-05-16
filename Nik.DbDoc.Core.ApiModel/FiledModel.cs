@@ -1,9 +1,11 @@
-﻿namespace Nik.DbDoc.Core.ApiModel
+﻿using Nik.Framework.Copy;
+
+namespace Nik.DbDoc.Core.ApiModel
 {
     /// <summary>
     /// 数据库表字段实体
     /// </summary>
-    public class FieldModel
+    public class FieldModel : ICopy
     {
         /// <summary>
         /// 名称

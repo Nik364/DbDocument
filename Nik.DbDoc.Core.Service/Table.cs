@@ -21,7 +21,7 @@ namespace Nik.DbDoc.Core.Service
         }
 
         /// <summary>
-        /// 获取数据库列表
+        /// 获取数据库表字段列表
         /// </summary>
         /// <param name="dbName">数据库名称</param>
         /// <param name="tableName">数据库表名称</param>
@@ -32,6 +32,26 @@ namespace Nik.DbDoc.Core.Service
             var dbs = dal.GetList(dbName, tableName);
             var dbModels = from item in dbs select item.CopyTo<FieldModel>();
             return dbModels.ToList();
+        }
+
+        /// <summary>
+        /// 新增或者更新字段描述
+        /// 若不存在则新增否则更新
+        /// </summary>
+        /// <param name="dbName">数据库名</param>
+        /// <param name="model">扩展对象属性</param>
+        public void AddOrUpdateFieldCaption(string dbName, ExtendPropModel model)
+        {
+            Domain.Data.ExtendProp dal = new Domain.Data.ExtendProp();
+            var prop = model.CopyTo<Domain.Model.ExtendProp>();
+            if (dal.Exist(dbName, prop))
+            {
+                dal.Update(dbName, prop);
+            }
+            else
+            {
+                dal.Add(dbName, prop);
+            }
         }
     }
 }

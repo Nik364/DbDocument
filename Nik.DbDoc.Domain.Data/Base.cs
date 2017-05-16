@@ -43,7 +43,7 @@ namespace Nik.DbDoc.Domain.Data
         /// <returns>DataSet</returns>
         public DataSet ExecSql(string sql)
         {
-            return SqlHelper.ExecuteDataset(DbConnectionString, CommandType.Text, sql);
+            return this.ExecSql(sql, null);
         }
 
         /// <summary>
@@ -54,7 +54,19 @@ namespace Nik.DbDoc.Domain.Data
         /// <returns>DataSet</returns>
         public DataSet ExecSql(string sql, params SqlParameter[] parameters)
         {
-            return SqlHelper.ExecuteDataset(DbConnectionString, CommandType.Text, sql, parameters);
+            return this.ExecSql(CommandType.Text, sql, parameters);
+        }
+
+        /// <summary>
+        /// 执行查询语句
+        /// </summary>
+        /// <param name="type">命令类型</param>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="parameters">参数</param>
+        /// <returns>DataSet</returns>
+        public DataSet ExecSql(CommandType type, string sql, params SqlParameter[] parameters)
+        {
+            return SqlHelper.ExecuteDataset(DbConnectionString, type, sql, parameters);
         }
 
         /// <summary>
@@ -64,7 +76,7 @@ namespace Nik.DbDoc.Domain.Data
         /// <returns></returns>
         public int ExecNonQuerySql(string sql)
         {
-            return SqlHelper.ExecuteNonQuery(DbConnectionString, CommandType.Text, sql);
+            return this.ExecNonQuerySql(sql, null);
         }
 
         /// <summary>
@@ -74,6 +86,18 @@ namespace Nik.DbDoc.Domain.Data
         /// <param name="parameters">参数</param>
         /// <returns></returns>
         public int ExecNonQuerySql(string sql, params SqlParameter[] parameters)
+        {
+            return this.ExecNonQuerySql(CommandType.Text, sql, parameters);
+        }
+
+        /// <summary>
+        /// 执行非查询语句
+        /// </summary>
+        /// <param name="type">命令类型</param>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="parameters">参数</param>
+        /// <returns></returns>
+        public int ExecNonQuerySql(CommandType type, string sql, params SqlParameter[] parameters)
         {
             return SqlHelper.ExecuteNonQuery(DbConnectionString, CommandType.Text, sql, parameters);
         }
@@ -85,7 +109,7 @@ namespace Nik.DbDoc.Domain.Data
         /// <returns>查询所返回的结果集中第一行的第一列</returns>
         public object ExecScalar(string sql)
         {
-            return SqlHelper.ExecuteScalar(DbConnectionString, CommandType.Text, sql);
+            return this.ExecScalar(sql, null);
         }
 
         /// <summary>
